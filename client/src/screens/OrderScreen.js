@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchOrdersData } from '../store/order-action';
+import Loader from '../components/Loader';
 
 export default function OrderScreen() {
   const dispatch = useDispatch();
-
+  const currentUser = useSelector(state => state.user.currentUser)
+  
   useEffect(() => {
-    dispatch(fetchOrdersData())
-  }, [dispatch])
+    dispatch(fetchOrdersData(currentUser._id))
+  }, [dispatch, currentUser])
 
   const orderData = useSelector(state => state.order.orders);
-  console.log(orderData);
+  const isLoading = useSelector(state => state.order.loading)
   return (
     <div style={{ marginTop: '7rem' }}>
       <h2>My orders</h2>
-      {orderData.map((order) => {
+      {isLoading && <Loader />}
+      {!isLoading &&
+       orderData.map((order) => {
         return (
           <div className='row justify-content-center' key={order._id}>
             <div className='col-md-8 m-2 p-2' >

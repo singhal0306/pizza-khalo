@@ -1,22 +1,22 @@
 import { userAction } from "./userSlice";
+import { fetchCartData } from "./cart-actions";
 import axios from "axios";
 
 export const isLoggedIn = () => {
     return async (dispatch) => {
-        const userAvailable = localStorage.getItem('currentUser')
-        if (userAvailable) {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-            dispatch(userAction.retriveUser(currentUser))
+        try {
+            const response = await axios.get("/api/users/isLoggedIn")
+            const currentUser = await response.data.userData;
+            if(currentUser){
+                dispatch(userAction.retriveUser(currentUser))
+                dispatch(fetchCartData(currentUser.email));
+            }
+            else{
+                dispatch(userAction.userLoginFails("User not found"))
+            }
+        } catch (error) {
+            console.log(error)
         }
-
-        // if (cookies.jwt) {
-        //     try {
-        //         const response = await axios.post("/api/users/isLoggedIn", cookies.jwt)
-
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        // }
     }
 }
 
@@ -37,19 +37,23 @@ export const userLogin = (user) => {
     return async (dispatch) => {
         dispatch(userAction.userLoginRequest())
         try {
-            const response = await axios.post('/api/users/login', user);
-            // console.log(response.data.message)
-            dispatch(userAction.userLoginSuccess(response.data.userData))
-            window.location.href ="/"
+            const response =await axios.post('/api/users/login', user);
+            if(response.data.message === "Login successful"){
+                dispatch(userAction.userLoginSuccess())
+                window.location.href = "/"
+            }else{
+                throw new Error("Login Failed")
+            }
         } catch (error) {
-            dispatch(userAction.userRegisterFails("Invalid Credentials"))
+            dispatch(userAction.userLoginFails("Invalid Credentials"))
         }
     }
 }
 
 export const userLogout = () => {
     return async (dispatch) => {
-        localStorage.removeItem('currentUser')
+        const respone = axios.get("/api/users/logout")
+        console.log(respone.fetchCartData)
         dispatch(userAction.userLogout())
         window.location.href = '/login'
     }

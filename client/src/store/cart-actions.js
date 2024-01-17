@@ -1,17 +1,12 @@
 import { cartActions } from "./cartSlice";
 import axios from "axios";
 
-export const fetchCartData = () => {
+export const fetchCartData = (email) => {
     return async (dispatch) => {
-        
-        const userAvailable = localStorage.getItem('currentUser')
-        if (userAvailable) {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-            const cartItems = await axios.post('/api/cart/sendcartdata', {email: currentUser.email})
-            dispatch(cartActions.setCartData({
-                cartItems: cartItems.data
-            }))
-        }
+        const cartItems = await axios.post('/api/cart/sendcartdata', { email: email })
+        dispatch(cartActions.setCartData({
+            cartItems: cartItems.data
+        }))
     }
 }
 

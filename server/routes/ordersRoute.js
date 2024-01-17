@@ -102,7 +102,6 @@ router.get('/order/success', async (req, res) => {
 
 router.post('/getallorders', async (req, res) => {
     const { userId } = req.body;
-
     try {
         const orders = await order.find({ userId: userId }).sort({ _id: -1 })
         res.send(orders)

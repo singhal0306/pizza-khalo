@@ -28,11 +28,9 @@ const userSlice = createSlice({
         userLoginRequest(state) {
             state.loading = true;
         },
-        userLoginSuccess(state, action){
+        userLoginSuccess(state){
             state.loading = false;
             state.loginSuccess = true;
-            state.currentUser = action.payload
-            localStorage.setItem('currentUser', JSON.stringify(action.payload))
         },
         userLoginFails(state, action){
             state.loading = false;

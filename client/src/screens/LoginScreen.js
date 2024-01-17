@@ -12,15 +12,16 @@ export default function LoginScreen() {
 
   const loginState = useSelector(state => state.user);
   const { loading, error } = loginState;
-  if(error !== ''){
-    setShowError(true)
-  } 
+  
+  // if(error !== ''){
+  //   setShowError(true)
+  // } 
 
   const loginHandler = (event) => {
     event.preventDefault();
     const user = { email, password }
-    setEmail(''); setPassword('');
     dispatch(userLogin(user));
+    setEmail(''); setPassword('');
   }
   return (
     <div className="container" style={{ paddingTop: "7rem" }}>

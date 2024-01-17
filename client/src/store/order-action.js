@@ -8,8 +8,6 @@ export const placeOrder = (subtotal) => {
         dispatch(orderActions.placeOrderRequest());
         const currentUser = getstate().user.currentUser;
         const cartItems = getstate().cart.cartItems;
-        // console.log(cartItems)
-        // console.log(currentUser)
         try {
             const stripe = await loadStripe('pk_test_51OX0LZSGgfaszQ2KDuAvZQP4lL5ykezfB1aJexoGlNbtiIQOoF7Ry1OBxfMX8D9FYzEItTHPF6pCcpNEdLB9uq4B00xRUAYjaa');
             const response = await axios.post('/api/orders/placeorder', { subtotal, currentUser, cartItems })
@@ -28,13 +26,12 @@ export const placeOrder = (subtotal) => {
     }
 }
 
-export const fetchOrdersData = () => {
+export const fetchOrdersData = (userId) => {
     return async (dispatch, getstate) => {
-        const fetchOrders = async () => {
-            const currentUser = getstate().user.currentUser;
+        const fetchOrders = async () => {            
             dispatch(orderActions.getOrdersRequest())
-            const response = await axios.post("/api/orders/getallorders", { userId: currentUser._id });
-            const data = await response.data;
+            const response = await axios.post("/api/orders/getallorders", { userId });
+            const data = response.data;
             return data;
         }
         try {
