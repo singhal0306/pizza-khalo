@@ -14,6 +14,7 @@ const pizzaSlice = createSlice({
         getPizzasSuccess (state, action){
             state.pizzas = action.payload.pizzas;
             state.loading= false;
+            state.error = false;
         },
         getPizzasFail(state, action){
             state.error = true;

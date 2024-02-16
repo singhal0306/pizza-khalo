@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import {Link} from "react-router-dom"
 import Loader from "../components/Loader"
 import Success from "../components/Success"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import Error from "../components/Error"
 import { useDispatch, useSelector } from 'react-redux';
 import { userRegistration } from '../store/user-action'
@@ -19,7 +22,7 @@ export default function RegisterScreen() {
   const submitHandler = (event) => {
     event.preventDefault()
     if (password !== cPassword) {
-      alert("Password do not match!");
+      toast("Password do not match!");
     } else {
       const user = { fname, lname, email, password }
       setFName(''); setLName(''); setEmail(''); setCPossword(''); setPassword('')
@@ -32,6 +35,7 @@ export default function RegisterScreen() {
         <div className='col-md-5 mb-3 border pt-2 px-5 rounded'>
           {loading && <Loader />}
           {registerSuccess && <Success success="User Registered Successfully"/> }
+          <ToastContainer />
           <h4 className='text-center m-2 pb-3'> Register</h4>
           <form className="row g-3">
             <div className="col-md-6">
@@ -56,7 +60,7 @@ export default function RegisterScreen() {
             </div>
             <div className="col-12 text-start">
               <button className="btn btn-primary" style={{ background: '#8a2b06' }} type="submit" onClick={submitHandler}>Register</button>
-              <a className='mx-2' href="/login">Login</a>
+              <Link className='mx-2' to="/login">Login</Link>
             </div>
           </form>
         </div>

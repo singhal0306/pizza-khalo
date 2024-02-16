@@ -1,62 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CartIcon from "../../assets/cart.svg"
 import styles from "./HeaderCButton.module.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 
+import { Link } from "react-router-dom";
 import { userLogout } from "../../store/user-action"
 import { useSelector, useDispatch } from 'react-redux'
 
 const HeaderCButton = props => {
     const dispatch = useDispatch()
-    const length = useSelector(state => state.cart.cartItems)
+    const cartItems = useSelector(state => state.cart.cartItems)
     const isLoggedIn = useSelector(state => state.user.loginSuccess)
     const currentUser = useSelector(state => state.user.currentUser)
-    
-    // console.log(currentUser)
-    // const [btnIsHighlighted, setBtnIsHignlighted] = useState(false);
 
-    // const btnStyle = `${styles.button} ${btnIsHighlighted ? styles.bump : ''}`
+    const [btnIsHighlighted, setBtnIsHignlighted] = useState(false);
 
-    // useEffect(()=>{
-    //     if(cartCtx.items.length === 0){
-    //         return;
-    //     }
-    //     setBtnIsHignlighted(true)
-    //     const timer = setTimeout(() =>{
-    //         setBtnIsHignlighted(false)
-    //     }, 300)
+    const btnStyle = `${styles.button} ${btnIsHighlighted ? styles.bump : ''}`
 
-    //     return () =>{
-    //         clearTimeout(timer)
-    //     }
-    // }, [cartCtx.items])
+    useEffect(() => {
+        if (cartItems.length === 0) {
+            return;
+        }
+        setBtnIsHignlighted(true)
+        const timer = setTimeout(() => {
+            setBtnIsHignlighted(false)
+        }, 500)
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [cartItems])
 
     return (
         <React.Fragment>
-            <ul className="nav nav-pills">
-                <li className="nav-item mx-2">
-                    {!isLoggedIn &&
-                        <a className="nav-link ms-3 my-2" href="/login"><b>Login</b></a>}
-                    {isLoggedIn &&
-                        <Dropdown className="mt-1">
-                            <Dropdown.Toggle className={`${styles.button}`} style={{ textDecoration: 'none' }} id="dropdown-basic" >
-                                {currentUser.fname.toUpperCase()}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="/orders">Orders</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2" onClick={() => {dispatch(userLogout()) }}>Logout</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>}
-                </li>
-                <li className="nav-item">
-                    <a className={styles.button} href="/cart" style={{ textDecoration: 'none' }}>
+            <ul className="navbar-nav">
+                <li className="nav-item d-flex justify-content-end">
+                    <Link className={`${btnStyle} text-decoration-none`} to={"/cart"}  >
                         <img className={styles.icon} src={CartIcon} alt="cart icon" />
                         <span>Your Cart</span>
                         <span className={styles.badge}>
-                                {length.length}
+                            {cartItems.length}
                         </span>
-                    </a>
+                    </Link>
+                </li>
+                <li className="nav-item mx-0 mx-lg-2 ">
+                    {!isLoggedIn &&
+                        <Link className="nav-link  m-3 my-2" aria-disabled='true' to={"/login"}><b>Login</b></Link>}
+                    {isLoggedIn &&
+                        <Dropdown className="mt-1 d-flex justify-content-end">
+                            <Dropdown.Toggle className={`${styles.button}`} id="dropdown-basic" >
+                                {currentUser.fname.toUpperCase()}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item>
+                                    <Link className="dropdown-item" to="/orders">Orders</Link>
+                                </Dropdown.Item>
+                                <Dropdown.Item>
+                                    <button className="dropdown-item" onClick={() => { dispatch(userLogout()) }}>Logout</button>
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>}
                 </li>
             </ul>
         </React.Fragment>

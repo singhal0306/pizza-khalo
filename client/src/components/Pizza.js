@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../store/cartSlice';
 
 export default function Pizza(props) {
     const dispatch = useDispatch();
     const pizza = props.pizza;
+    const isLogin = useSelector(state => state.user.loginSuccess)
     const [quantity, setQuantity] = useState(1);
     const [varient, setVarient] = useState('small')
 
@@ -22,12 +23,12 @@ export default function Pizza(props) {
     }
 
     const addToCartHandler = () => {
-        dispatch(cartActions.addToCart({pizza, quantity, varient}))
+        dispatch(cartActions.addToCart({ pizza, quantity, varient }))
     }
 
     return (
-        <div className='shadow-lg p-3 mb-5 bg-white rounded'>
-            <div onClick={handleShow}>
+        <div className='shadow-lg p-3 mb-5 bg-white rounded '>
+            <div onClick={handleShow} className='mb-3'>
                 <div style={{ height: "50px" }}>
                     <p>{pizza.name}</p>
                 </div>
@@ -53,13 +54,12 @@ export default function Pizza(props) {
                 </div>
             </div>
 
-            <div className="flex-container">
-                <div className='m-1 w-100 align-middle'>
-                    <h1 className='mt-2'>Price: {pizza.prices[0][varient] * quantity} Rs-
-                    </h1>
+            <div className="flex-container" >
+                <div className='m-1 p-1 w-100 border rounded' style={{boxSizing:'border-box'}} >
+                    <h6 className=''>Price: {pizza.prices[0][varient] * quantity} Rs/-</h6>
                 </div>
                 <div className='m-1 w-100'>
-                    <button className='btn' style={{backgroundColor: '#8a2b06'}} onClick={addToCartHandler}>ADD TO CART</button>
+                    <button disabled={!isLogin} className='btn' style={{ backgroundColor: '#8a2b06' }} onClick={addToCartHandler}>ADD TO CART</button>
                 </div>
             </div>
 
@@ -74,7 +74,7 @@ export default function Pizza(props) {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button className='btn' style={{background: "#8a2b06"}} onClick={handleClose}>CLOSE</button>
+                    <button className='btn' style={{ background: "#8a2b06" }} onClick={handleClose}>CLOSE</button>
                 </Modal.Footer>
             </Modal>
         </div>

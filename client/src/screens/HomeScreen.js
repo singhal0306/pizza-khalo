@@ -23,11 +23,11 @@ export default function HomeScreen() {
             <ScreenImage />
             <Summary />
             <div className="container py-5">
-                <div className="row justify-content-center">
-                    {loading && <Loader />}
-                    {error && <Error error="Something Went Wrong" />}
+                {loading && <Loader />}
+                {error && <Error error="Something Went Wrong" />}
+                <div className="row justify-content-center mx-2">
                     {pizzas.map(pizza => {
-                        return <div className="col-md-4" key={pizza._id}>
+                        return <div className="col col-md-4 col-sm-6 " key={pizza._id}>
                             <Pizza pizza={pizza} />
                         </div>
                     })}

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+// import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import HomeScreen from './screens/HomeScreen';
@@ -8,6 +8,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import OrderScreen from "./screens/OrderScreen"
 import Header from './components/Header/Header';
+import Footer from './components/Footer';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { sendCartData } from './store/cart-actions';
@@ -20,7 +21,7 @@ function App() {
   const newCart = useSelector(state => state.cart)
   useEffect(() => {
     dispatch(isLoggedIn());
-    
+
   }, [dispatch])
 
   useEffect(() => {
@@ -36,20 +37,21 @@ function App() {
   }, [dispatch, newCart])
 
   return (
-    <div className='App'>
-      <Header />
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className='App'>
+
+        <Header />
         <Routes>
           <Route path='/' element={<HomeScreen />}></Route>
           <Route path='/cart' element={<CartScreen />}></Route>
-          <Route path='/login' element={<LoginScreen />}></Route>
-          <Route path='/register' element={<RegisterScreen />}></Route>
           <Route path='/orders' element={<OrderScreen />}></Route>
           <Route path='/cancel' element={<RegisterScreen />}></Route>
+          <Route path='/login' element={<LoginScreen />}></Route>
+          <Route path='/register' element={<RegisterScreen />}></Route>
         </Routes>
-      </BrowserRouter>
-      {/* <HomeScreen /> */}
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

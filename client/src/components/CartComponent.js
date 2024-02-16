@@ -22,7 +22,7 @@ export default function CartComponent({ item }) {
     }
 
     return (
-        <div className="flex-container text-center">
+        <div className="flex-container text-center pt-2">
             <div className='ml-1 my-2 w-100'>
                 <img src={item.image} className='rounded' style={{ height: '80px', width: '80px' }} alt="" />
                 

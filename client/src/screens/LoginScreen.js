@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin } from '../store/user-action'
 import Loader from "../components/Loader"
@@ -42,7 +43,7 @@ export default function LoginScreen() {
             </div>
             <div className="col-12 text-start">
               <button className="btn btn-primary" style={{ backgroundColor: '#8a2b06' }} type="submit" onClick={loginHandler}>Login</button>
-              <a className='mx-2' href="/register">Register</a>
+              <Link className='mx-2' to="/register">Register</Link>
             </div>
           </form>
         </div>
