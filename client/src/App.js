@@ -8,7 +8,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import OrderScreen from "./screens/OrderScreen"
 import Header from './components/Header/Header';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';  
 
 import { useDispatch, useSelector } from 'react-redux';
 import { sendCartData } from './store/cart-actions';
@@ -49,7 +49,7 @@ function App() {
           <Route path='/login' element={<LoginScreen />}></Route>
           <Route path='/register' element={<RegisterScreen />}></Route>
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </BrowserRouter>
   );
