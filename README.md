@@ -90,8 +90,8 @@ Here are some screenshots showcasing the Pizza Khalo web app:
 )
 
 5. **Mobile View**:
-    <div style="display:flex; flex-direction: column;">
-       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/a75b9c97-ccf2-426d-9d3b-dbd98e6eb831" alt="Mobile View 1" style="flex-basis: 30%;">
-       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/5d47b6b5-f009-44ca-a456-e7c2c07cd7fd" alt="Mobile View 2" style="flex-basis: 30%;">
-       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/bc41f992-0b88-4a95-bc8a-7a53e6fde3fb" alt="Mobile View 3" style="flex-basis: 30%;">
+    <div style="display:flex; flex-direction: row;">
+       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/a75b9c97-ccf2-426d-9d3b-dbd98e6eb831" alt="Mobile View 1" style="flex: 1;">
+       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/5d47b6b5-f009-44ca-a456-e7c2c07cd7fd" alt="Mobile View 2" style="flex: 1;">
+       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/bc41f992-0b88-4a95-bc8a-7a53e6fde3fb" alt="Mobile View 3" style="flex: 1;">
    </div>
