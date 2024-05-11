@@ -91,8 +91,7 @@ Here are some screenshots showcasing the Pizza Khalo web app:
 
 5. **Mobile View**:
     <div style="display:flex; flex-direction: row;">
-       <img align="left" width="200" height ="200" src="https://github.com/singhal0306/pizza-khalo/assets/86726484/a75b9c97-ccf2-426d-9d3b-dbd98e6eb831" alt="Mobile View 1" style="flex: 1;">
-       <img align="left" width="100" height="100" src="https://picsum.photos/100/100">
-       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/5d47b6b5-f009-44ca-a456-e7c2c07cd7fd" alt="Mobile View 2" style="flex: 1;">
-       <img src="https://github.com/singhal0306/pizza-khalo/assets/86726484/bc41f992-0b88-4a95-bc8a-7a53e6fde3fb" alt="Mobile View 3" style="flex: 1;">
+       <img align="left" width="300" height ="300" src="https://github.com/singhal0306/pizza-khalo/assets/86726484/a75b9c97-ccf2-426d-9d3b-dbd98e6eb831" alt="Mobile View 1" style="flex: 1;">
+       <img align="left" width="300" height ="300" src="https://github.com/singhal0306/pizza-khalo/assets/86726484/5d47b6b5-f009-44ca-a456-e7c2c07cd7fd" alt="Mobile View 2" style="flex: 1;">
+       <img align="left" width="300" height ="300" src="https://github.com/singhal0306/pizza-khalo/assets/86726484/bc41f992-0b88-4a95-bc8a-7a53e6fde3fb" alt="Mobile View 3" style="flex: 1;">
    </div>
