@@ -14,7 +14,7 @@ const cartSlice = createSlice({
             const newItem = action.payload.pizza;
             const varient = action.payload.varient;
             const quantity = action.payload.quantity;
-
+            
             state.changed = true;
             const existingItem = state.cartItems.find(item => item._id === newItem._id && item.varient === varient)
             if (!existingItem) {

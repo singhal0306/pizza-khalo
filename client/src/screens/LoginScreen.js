@@ -24,6 +24,7 @@ export default function LoginScreen() {
     dispatch(userLogin(user));
     setEmail(''); setPassword('');
   }
+  
   return (
     <div className="container" style={{ paddingTop: "7rem" }}>
       <div className='row justify-content-center'>

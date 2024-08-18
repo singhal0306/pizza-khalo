@@ -19,9 +19,6 @@ app.use(cookieParser())
 app.get('/', (req, res) => {
     res.send("hello");
 })
-app.get('/afaf', (req, res)=>{
-    res.send('i am done');
-})
 
 app.use('/api/pizzas', pizzaRoute);
 app.use('/api/users', userRoute);
